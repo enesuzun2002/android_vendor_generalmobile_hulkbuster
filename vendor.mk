@@ -8,7 +8,11 @@ VENDOR_SHADOWED_BINS := logwrapper pppd
 # replaced by the native android.hardware.sensors@1.0-service.hulkbuster
 # (device/generalmobile/hulkbuster/sensors). sensors.default.so is also built
 # from source (hardware/libhardware stub).
-VENDOR_SHADOWED_HW := sensors.mt6592 sensors.default
+# lights.mt6592 / power.default: replaced by the native light@2.0 / power@1.0
+# services (device/generalmobile/hulkbuster/{lights,power}). power.default.so
+# was the AOSP no-op stub; lights.mt6592.so probed RGB/jogball/keyboard LEDs
+# that this device lacks.
+VENDOR_SHADOWED_HW := sensors.mt6592 sensors.default lights.mt6592 power.default
 VENDOR_SENSOR_DAEMONS := msensord orientationd geomagneticd akmd8975 akmd8963 akmd09911 bmm050d bmm056d
 VENDOR_SHADOWED_COPY := \
     $(foreach l,$(VENDOR_SHADOWED_LIBS),$(VENDOR_PATH)/proprietary/lib/$(l).so:system/lib/$(l).so) \
